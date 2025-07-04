@@ -1,0 +1,63 @@
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: ./backend/postgres/Dockerfile
+    image: trb-postgres
+
+    restart: always
+
+    container_name: nsk_db
+
+    ports:
+      - "5433:5432"
+
+    environment:
+      POSTGRES_DB: nsk
+      POSTGRES_USER: handalab
+      POSTGRES_PASSWORD: handalab
+
+    volumes:
+      - ./backend/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./backend/postgres/data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    image: trb-backend
+    
+    restart: always
+    container_name: nsk_backend
+    ports:
+      - "5002:5002"
+      - "5000:5000"
+      - "5555:5555"
+      - "9999:9999"
+      - "9998:9998"
+      - "9997:9997"
+      - "9996:9996"
+      - "9995:9995"
+      - "9994:9994"
+      - "9993:9993"
+      - "9992:9992"
+      - "9991:9991"
+
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend:/TRB/backend
+    command: ["node", "server.js"]
+
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: ./frontend/Dockerfile
+
+  #   restart: always
+  #   container_name: nsk_frontend
+  #   ports:
+  #     - "3000:3000"
+
+  #   volumes:
+  #     - ./frontend:/TRB/frontend

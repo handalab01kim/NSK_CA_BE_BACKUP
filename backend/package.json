@@ -1,0 +1,24 @@
+{
+    "name": "nsk_backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^1.7.3",
+        "cors": "^2.8.5",
+        "express": "^4.19.2",
+        "moment-timezone": "^0.5.45",
+        "node-df": "^0.1.4",
+        "node-os-utils": "^1.3.7",
+        "node-rtsp-stream": "^0.0.9",
+        "nodemon": "^3.1.10",
+        "pg": "^8.12.0",
+        "socket.io": "^4.7.5",
+        "socket.io-client": "^4.7.5"
+    }
+}
